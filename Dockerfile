@@ -17,6 +17,8 @@ RUN npm install
 
 WORKDIR /app
 
+RUN mkdir input && mkdir output
+
 EXPOSE 5000/tcp
 
 ENTRYPOINT [ "python3" ]
