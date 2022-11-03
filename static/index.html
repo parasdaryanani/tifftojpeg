@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Tiff to Jpeg</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" style="background-color: #28343d !important">
+    <div class="container">
+      <a class="navbar-brand" href="#">Tiff to Jpeg Converter</a>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+      <!-- <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="mt-5">Convert TIFF to JPEG</h1>
+        <p class="lead">
+          This app allows you to quickly convert a tiff image to a jpeg image.
+        </p>
+        <br />
+
+        <form id="form" action="http://127.0.0.1:5000/upload" enctype="multipart/form-data" method="POST">
+          <div class="form-group row">
+            <label for="mode" class="col-sm-6 col-form-label">
+              Choose a running mode
+              <small id="modeHelp" class="form-text text-muted">Single mode yields 1 json file. Batch mode yields
+                multiple.</small>
+            </label>
+            <div class="col-sm-6">
+              <select class="form-control form-control-sm" id="mode" name="mode">
+                <option value="single" selected>Single</option>
+                <option value="batch">Batch</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row singleMode">
+            <label for="file" class="col-sm-6 col-form-label">
+              Upload an image file
+              <small id="fileHelp" class="form-text text-muted">Only a .tiff or .tif file is accepted.</small>
+            </label>
+            <div class="col-sm-6">
+              <input type="file" name="file" class="form-control-file" id="file" accept=".tiff,.tif" />
+            </div>
+          </div>
+
+          <div class="form-group row batchMode" style="display:none">
+            <label for="file" class="col-sm-6 col-form-label">
+              Upload image files
+              <small id="fileHelp" class="form-text text-muted">Only .tiff or .tif file are accepted.</small>
+            </label>
+            <div class="col-sm-6">
+              <input type="file" name="files" class="form-control-file" id="files" accept=".tiff,.tif" multiple />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-sm-12 text-center">
+              <button type="submit" class="btn btn-primary">
+                Convert and Download
+              </button>
+              <button type="reset" class="btn btn-default">Clear</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="text/javascript">
+    $('#mode').on('change', function (e) {
+      e.preventDefault();
+      if (this.value == "batch") {
+        $("#form").attr('action', "http://127.0.0.1:5000/upload-multi");
+        $("#file").removeAttr('required');
+        $("#files").attr('required', 'required');
+        $('.singleMode').hide();
+        $('.batchMode').show();
+      }
+      else {
+        $("#form").attr('action', "http://127.0.0.1:5000/upload");        
+        $("#files").removeAttr('required');
+        $("#file").attr('required', 'required');
+        $('.singleMode').show();
+        $('.batchMode').hide();
+      }
+    });
+  </script>
+</body>
+
+</html>

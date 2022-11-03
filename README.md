@@ -1,13 +1,5 @@
-# tifftojpeg
+# TIFF to JPEG converter
 
-## Description
+Super simple web app to convert tiff files to jpeg.
 
-Python tiff to jpeg batch converter
-
-## Requirements
-
-None - Utilizes Python Image Library and Glob
-
-## Usage
-
-Place in directory with .tif/.tiff files and run.
+Based on https://github.com/kckaiwei/tifftojpeg

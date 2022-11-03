@@ -1,0 +1,6 @@
+input/
+output/
+static/node_modules/
+__pycache__/
+.DS_Store
+.vscode
